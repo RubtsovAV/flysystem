@@ -109,6 +109,18 @@ class FtpTests extends \PHPUnit_Framework_TestCase
         $this->assertTrue((bool) $this->adapter->has($filename));
     }
 
+    public function testHasFolder()
+    {
+        $dir1 = 'test';
+        $dir2 = 'test  1';
+        $this->createResourceDir($dir1);
+        $this->createResourceDir($dir2);
+        $this->createResourceFile($dir1 . '.txt', 'testdata');
+
+        $this->assertTrue((bool) $this->adapter->has($dir1));
+        $this->assertTrue((bool) $this->adapter->has($dir2));
+    }
+
     /**
      * @dataProvider filepathProvider
      */
